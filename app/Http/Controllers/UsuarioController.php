@@ -89,10 +89,12 @@ class UsuarioController extends Controller
         $usuario= Usuarios::all('*')
         ->where('name','like',"$request->name")
         ->where('password','like',"$request->password")->first();
-        if(count($usuario)==0){
-            return response()->json(['login'=>false],500);
-        }else{
+        // return response()->json(count($usuario));
+        if($usuario){
             return response()->json($usuario,200);
+
+        }else{
+            return response()->json(['login'=>false],500);
         }
     }
 }
